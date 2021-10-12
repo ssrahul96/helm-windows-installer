@@ -1,0 +1,28 @@
+version: 2.1
+
+jobs:
+  generate-windows-installer:
+    machine:
+      image: windows-default 
+    steps:
+      - checkout
+      - run:
+          name : download helm #replace it with artifacts from build stage
+          command: Invoke-WebRequest -Uri https://gethelm.blob.core.windows.net/gethelm/helm-canary-windows-amd64.zip -OutFile helm.zip
+      
+      - run:
+          name : unzip #can be ignored if we use artifcats
+          command: Expand-Archive .\helm.zip -DestinationPath .
+      
+      - run:
+          name: Build installer
+          command: ISCC.exe helm_installer.iss
+      
+      - store_artifacts:
+          path: output/
+
+
+workflows:
+  windows-installer-workflow:
+    jobs:
+      - generate-windows-installer
