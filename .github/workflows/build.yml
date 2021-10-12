@@ -1,0 +1,32 @@
+name: Pack Helm
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  pack:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download binary
+        run: Invoke-WebRequest -Uri https://get.helm.sh/helm-v3.7.0-windows-amd64.zip -OutFile helm.zip
+
+      - name: Unzip binary
+        run: Expand-Archive .\helm.zip -DestinationPath .
+
+      - name: Build installer
+        run: ISCC.exe helm_installer.iss
+
+      - name: upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: helm_installer
+          path: output\helm_installer.exe
