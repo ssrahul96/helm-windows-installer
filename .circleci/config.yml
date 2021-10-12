@@ -18,7 +18,7 @@ jobs:
 
       - run:
           name: install innosetup and build
-          command: install-inno.ps1
+          command: .\build.ps1
 
       - store_artifacts:
           path: output/
