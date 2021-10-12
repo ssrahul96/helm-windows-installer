@@ -3,6 +3,6 @@ Invoke-WebRequest -Uri https://jrsoftware.org/download.php/is.exe -OutFile inno.
 Start-Process -FilePath inno.exe -ArgumentList "/VERYSILENT","/NORESTART"
 
 #for debugging
-Get-ChildItem -Path "C:/Program Files (x86)/Inno Setup 6/"
+Get-ChildItem -Path ${Env:ProgramFiles(x86)}"\Inno Setup 6\"
 
-Start-Process -FilePath "C:/Program Files (x86)/Inno Setup 6/ISCC.exe" -ArgumentList "helm_installer.iss"
+Start-Process -FilePath ${Env:ProgramFiles(x86)}"\Inno Setup 6\ISCC.exe" -ArgumentList "helm_installer.iss"
