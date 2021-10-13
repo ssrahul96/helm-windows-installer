@@ -1,12 +1,13 @@
 [Setup]
 AppName=Helm Installer
-AppVersion=1.0.0
+AppVersion={#BinaryName}
 DefaultDirName={autopf}\helm
 DefaultGroupName=Helm
 PrivilegesRequired=lowest
 AppPublisher=Helm
 AppPublisherURL=https://helm.sh
 AppSupportURL=https://github.com/helm/helm
+LicenseFile="windows-amd64\LICENSE"
 OutputBaseFilename=helm_installer
 
 [Files]
