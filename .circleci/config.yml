@@ -18,7 +18,7 @@ jobs:
           command: unzip \helm.zip
 
       - persist_to_workspace:
-          root: /tmp/build
+          root: .
           paths: 
             - windows-amd64/*
 
