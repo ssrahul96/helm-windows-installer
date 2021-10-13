@@ -4,8 +4,9 @@ orbs:
   win: circleci/windows@2.2.0
 
 jobs:
-  generate-windows-installer:
-    executor: win/default # executor type
+  build:
+    docker:
+      - image: circleci/golang:1.16
     steps:
       - checkout
       - run:
@@ -15,6 +16,21 @@ jobs:
       - run:
           name: unzip #can be ignored if we use artifcats
           command: Expand-Archive .\helm.zip -DestinationPath .
+
+      - persist_to_workspace:
+          root: /tmp/build
+          paths: 
+            - windows-amd64/*
+
+  generate-windows-installer:
+    executor: win/default # executor type
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+
+      - run:
+         name: Copy from Workspace
+         command: Copy-Item "/tmp/workspace" . -Recurse
 
       - run:
           name: install innosetup and build
@@ -26,4 +42,5 @@ jobs:
 workflows:
   windows-installer-workflow:
     jobs:
+      - build
       - generate-windows-installer
