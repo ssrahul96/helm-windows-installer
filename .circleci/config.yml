@@ -15,7 +15,7 @@ jobs:
           command: >-
             wget
             https://gethelm.blob.core.windows.net/gethelm/helm-canary-windows-amd64.zip
-            -O _dist\helm.zip
+            -O _dist/helm.zip
       - run:
           name: unzip
           command: cd _dist && unzip helm.zip
