@@ -28,7 +28,7 @@ jobs:
         at: 'C:\tmp\workspace'
       - run: null
         name: Copy from Workspace
-        command: 'Copy-Item "C:\tmp\workspace" . -Recurse'
+        command: 'Copy-Item "C:\tmp\workspace\*" . -Recurse'
       - run: null
         name: install innosetup and build
         command: .\build.ps1
