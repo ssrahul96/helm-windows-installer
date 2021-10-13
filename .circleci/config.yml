@@ -1,45 +1,39 @@
 version: 2.1
-
 orbs:
   win: circleci/windows@2.2.0
-
 jobs:
   build:
     docker:
-      - image: circleci/golang:1.16
+      - image: 'circleci/golang:1.16'
     steps:
       - checkout
       - run:
-          name: download helm #replace it with artifacts from build stage
-          command: wget https://gethelm.blob.core.windows.net/gethelm/helm-canary-windows-amd64.zip -O helm.zip
-
+          name: download helm
+          command: >-
+            wget
+            https://gethelm.blob.core.windows.net/gethelm/helm-canary-windows-amd64.zip
+            -O helm.zip
       - run:
-          name: unzip #can be ignored if we use artifcats
+          name: unzip
           command: unzip \helm.zip
-
       - persist_to_workspace:
           root: .
-          paths: 
+          paths:
             - windows-amd64/*
-
   generate-windows-installer:
-    executor: win/default # executor type
+    executor: win/default
     steps:
       - checkout
-      - attach_workspace:
-          at: C:\tmp\workspace
-
-      - run:
-         name: Copy from Workspace
-         command: Copy-Item "C:\tmp\workspace" . -Recurse
-
-      - run:
-          name: install innosetup and build
-          command: .\build.ps1
-
-      - store_artifacts:
-          path: output/
-
+      - attach_workspace: null
+        at: 'C:\tmp\workspace'
+      - run: null
+        name: Copy from Workspace
+        command: 'Copy-Item "C:\tmp\workspace" . -Recurse'
+      - run: null
+        name: install innosetup and build
+        command: .\build.ps1
+      - store_artifacts: null
+        path: output/
 workflows:
   windows-installer-workflow:
     jobs:
