@@ -1,3 +1,8 @@
+if (![string]::IsNullOrEmpty(${Env:CIRCLE_PR_NUMBER})) {
+    Write-Host "Skipping deploy step; as this is a PR"
+    exit;
+}
+
 if (![string]::IsNullOrEmpty(${Env:CIRCLE_TAG})) {
     $ci_version = ${Env:CIRCLE_TAG}
 }
