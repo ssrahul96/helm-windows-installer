@@ -1,6 +1,6 @@
 [Setup]
-AppName=Helm Installer
-AppVersion={#BinaryName}
+AppName=Helm
+AppVersion={#Version}
 DefaultDirName={autopf}\helm
 DefaultGroupName=Helm
 PrivilegesRequired=lowest
