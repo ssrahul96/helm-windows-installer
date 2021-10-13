@@ -31,7 +31,7 @@ jobs:
           at: 'C:\tmp\workspace'
       - run:
           name: Copy from Workspace
-          command: 'Copy-Item "C:\tmp\workspace\windows-amd64\*" . -Recurse'
+          command: 'Copy-Item "C:\tmp\workspace\_dist\*" . -Recurse'
       - run:
           name: install innosetup and build
           command: .\build.ps1
