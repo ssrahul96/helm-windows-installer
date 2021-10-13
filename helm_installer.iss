@@ -8,7 +8,7 @@ AppPublisher=Helm
 AppPublisherURL=https://helm.sh
 AppSupportURL=https://github.com/helm/helm
 LicenseFile="windows-amd64\LICENSE"
-OutputBaseFilename=helm_installer
+OutputBaseFilename=helm_installer_win64
 
 [Files]
 Source: "windows-amd64\*" ; DestDir: "{app}\bin";
