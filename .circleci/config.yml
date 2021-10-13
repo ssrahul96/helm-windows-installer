@@ -26,11 +26,11 @@ jobs:
     executor: win/default # executor type
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: C:\tmp\workspace
 
       - run:
          name: Copy from Workspace
-         command: Copy-Item "/tmp/workspace" . -Recurse
+         command: Copy-Item "C:\tmp\workspace" . -Recurse
 
       - run:
           name: install innosetup and build
