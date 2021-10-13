@@ -18,7 +18,7 @@ jobs:
             -O _dist\helm.zip
       - run:
           name: unzip
-          command: cd _dist && unzip \helm.zip
+          command: cd _dist && unzip helm.zip
       - persist_to_workspace:
           root: .
           paths:
