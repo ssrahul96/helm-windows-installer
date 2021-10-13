@@ -24,16 +24,16 @@ jobs:
     executor: win/default
     steps:
       - checkout
-      - attach_workspace: null
-        at: 'C:\tmp\workspace'
-      - run: null
-        name: Copy from Workspace
-        command: 'Copy-Item "C:\tmp\workspace\*" . -Recurse'
-      - run: null
-        name: install innosetup and build
-        command: .\build.ps1
-      - store_artifacts: null
-        path: output/
+      - attach_workspace:
+          at: 'C:\tmp\workspace'
+      - run:
+          name: Copy from Workspace
+          command: 'Copy-Item "C:\tmp\workspace\*" . -Recurse'
+      - run:
+          name: install innosetup and build
+          command: .\build.ps1
+      - store_artifacts:
+          path: output/
 workflows:
   windows-installer-workflow:
     jobs:
