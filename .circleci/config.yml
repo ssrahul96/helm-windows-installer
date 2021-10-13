@@ -25,6 +25,7 @@ jobs:
   generate-windows-installer:
     executor: win/default # executor type
     steps:
+      - checkout
       - attach_workspace:
           at: C:\tmp\workspace
 
