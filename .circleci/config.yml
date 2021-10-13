@@ -11,11 +11,11 @@ jobs:
       - checkout
       - run:
           name: download helm #replace it with artifacts from build stage
-          command: Invoke-WebRequest -Uri https://gethelm.blob.core.windows.net/gethelm/helm-canary-windows-amd64.zip -OutFile helm.zip
+          command: wget https://gethelm.blob.core.windows.net/gethelm/helm-canary-windows-amd64.zip -O helm.zip
 
       - run:
           name: unzip #can be ignored if we use artifcats
-          command: Expand-Archive .\helm.zip -DestinationPath .
+          command: unzip \helm.zip
 
       - persist_to_workspace:
           root: /tmp/build
