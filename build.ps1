@@ -1,8 +1,8 @@
 Invoke-WebRequest -Uri https://jrsoftware.org/download.php/is.exe -OutFile inno.exe
 
-$process = Start-Process -FilePath inno.exe -ArgumentList "/VERYSILENT","/NORESTART" -PassThru
+$process = Start-Process -FilePath .\inno.exe -ArgumentList "/VERYSILENT","/NORESTART" -NoNewWindow -PassThru -Wait
 
-$process.HasExited
+$process.WaitForExit()
 
 Write-Host "Process exit code : " $process.ExitCode
 
