@@ -8,18 +8,21 @@ jobs:
     steps:
       - checkout
       - run:
+          name: create directory
+          command: mkdir _dist
+      - run:
           name: download helm
           command: >-
             wget
             https://gethelm.blob.core.windows.net/gethelm/helm-canary-windows-amd64.zip
-            -O helm.zip
+            -O _dist\helm.zip
       - run:
           name: unzip
-          command: unzip \helm.zip
+          command: cd _dist && unzip \helm.zip
       - persist_to_workspace:
           root: .
           paths:
-            - windows-amd64/*
+            - _dist/windows-amd64/*
   generate-windows-installer:
     executor: win/default
     steps:
