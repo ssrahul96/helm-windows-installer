@@ -4,12 +4,14 @@ $process = Start-Process -FilePath .\inno.exe -ArgumentList "/VERYSILENT","/NORE
 
 $process.WaitForExit()
 
-Write-Host "Process exit code : " $process.ExitCode
+Write-Host "Inno installer exit code : " $process.ExitCode
 
 #for debugging
 Get-ChildItem -Path ${Env:ProgramFiles(x86)}"\Inno Setup 6\"
 
-#for debugging
-Get-ChildItem -Path ${Env:ProgramFiles}"\Inno Setup 6\"
 
-Start-Process -FilePath ${Env:ProgramFiles(x86)}"\Inno Setup 6\ISCC.exe" -ArgumentList "helm_installer.iss"
+$process = Start-Process -FilePath ${Env:ProgramFiles(x86)}"\Inno Setup 6\ISCC.exe" -ArgumentList "helm_installer.iss" -NoNewWindow -PassThru -Wait
+
+$process.WaitForExit()
+
+Write-Host "Inno Compiler exit code : " $process.ExitCode
