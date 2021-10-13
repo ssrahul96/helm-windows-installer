@@ -43,4 +43,6 @@ workflows:
   windows-installer-workflow:
     jobs:
       - build
-      - generate-windows-installer
+      - generate-windows-installer:
+          requires:
+            - build
