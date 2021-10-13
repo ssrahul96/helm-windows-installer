@@ -1,7 +1,7 @@
 [Setup]
 AppName=Helm
 AppVersion={#Version}
-DefaultDirName={autopf}\helm
+DefaultDirName={autopf}\Helm
 DefaultGroupName=Helm
 PrivilegesRequired=lowest
 AppPublisher=Helm
