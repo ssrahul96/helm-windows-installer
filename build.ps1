@@ -22,7 +22,7 @@ $process.WaitForExit()
 
 Write-Host "Inno installer exit code : " $process.ExitCode
 
-Write-Host "App Version : " $appver
+Write-Host "App Version : " $ci_version
 
 $process = Start-Process -FilePath ${Env:ProgramFiles(x86)}"\Inno Setup 6\ISCC.exe" -ArgumentList "helm_installer.iss", "/DVersion=$ci_version" -NoNewWindow -PassThru -Wait
 
